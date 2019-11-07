@@ -29,3 +29,10 @@ Route::post('authors/create', 'AuthorController@store');
 Route::get('authors/find/{authorName}', 'AuthorController@show');
 Route::post('authors/update/{id}', 'AuthorController@update');
 Route::get('authors/delete/{id}', 'AuthorController@destroy');
+
+//Category
+Route::get('categories', 'CategoryController@index');
+Route::post('categories/create', 'CategoryController@store');
+Route::get('categories/find/{categoryName}', 'CategoryController@show');
+Route::post('categories/update/{id}', 'CategoryController@update');
+Route::get('categories/delete/{id}', 'CategoryController@destroy');

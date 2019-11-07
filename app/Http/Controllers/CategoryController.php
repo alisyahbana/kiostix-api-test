@@ -2,7 +2,9 @@
 
 namespace App\Http\Controllers;
 
+use App\Category;
 use Illuminate\Http\Request;
+use Illuminate\Http\Response;
 
 class CategoryController extends Controller
 {
@@ -13,7 +15,9 @@ class CategoryController extends Controller
      */
     public function index()
     {
-        //
+        $category = Category::all();
+
+        return Response::create($category);
     }
 
     /**
@@ -24,7 +28,9 @@ class CategoryController extends Controller
      */
     public function store(Request $request)
     {
-        //
+        $category = Category::create($request->all());
+
+        return Response::create($category);
     }
 
     /**
@@ -33,9 +39,14 @@ class CategoryController extends Controller
      * @param  int  $id
      * @return \Illuminate\Http\Response
      */
-    public function show($id)
+    public function show($categoryName)
     {
-        //
+        $category = Category::where('name', $categoryName)->first();
+        if (!$category) {
+            return Response::create(["message" => "Category Not Found"], 400);
+        }
+
+        return Response::create($category);
     }
 
     /**
@@ -47,7 +58,14 @@ class CategoryController extends Controller
      */
     public function update(Request $request, $id)
     {
-        //
+        $category = Category::find($id);
+        if (!$category) {
+            return Response::create(["message" => "Category Not Found"], 400);
+        }
+
+        $category->update($request->all());
+
+        return Response::create($category);
     }
 
     /**
@@ -58,6 +76,13 @@ class CategoryController extends Controller
      */
     public function destroy($id)
     {
-        //
+        $category = Category::find($id);
+        if (!$category) {
+            return Response::create(["message" => "Category Not Found"], 400);
+        }
+
+        Category::destroy($id);
+
+        return Response::create(["message" => "success"]);
     }
 }
