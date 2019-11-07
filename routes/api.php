@@ -19,5 +19,6 @@ Route::middleware('auth:api')->get('/user', function (Request $request) {
 
 
 Route::get('books', 'BookController@index');
-Route::get('books/category/{categoryName}', 'BookController@booksCategory');
-Route::get('books/author/{authorName}', 'BookController@booksAuthor');
+Route::post('books/title', 'BookController@getBooksByTitle');
+Route::post('books/category', 'BookController@getBooksByCategory');
+Route::post('books/author', 'BookController@getBooksByAuthor');
