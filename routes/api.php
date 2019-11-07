@@ -22,3 +22,10 @@ Route::get('books', 'BookController@index');
 Route::post('books/title', 'BookController@getBooksByTitle');
 Route::post('books/category', 'BookController@getBooksByCategory');
 Route::post('books/author', 'BookController@getBooksByAuthor');
+
+//Author
+Route::get('authors', 'AuthorController@index');
+Route::post('authors/create', 'AuthorController@store');
+Route::get('authors/find/{authorName}', 'AuthorController@show');
+Route::post('authors/update/{id}', 'AuthorController@update');
+Route::get('authors/delete/{id}', 'AuthorController@destroy');
